@@ -32,8 +32,20 @@ public class BossEnemy : Enemy {
                 StartBossBattle();
             }
         } else {
-            var s = healthbarCanvas.GetComponentInChildren<Image>();
-            s.rectTransform.sizeDelta = new Vector2(currentHealth / maxHealth * 400 + 4, 4);
+            var s = healthbarCanvas.GetComponentInChildren<Text>();
+            s.text = GetDamageIndicator();
+        }
+
+        if (phase == BossPhase.Phase1) {
+            if (currentHealth < 130) {
+                phase = BossPhase.Phase2;
+            }
+        }
+
+        if (phase == BossPhase.Phase2) {
+            if (UnityEngine.Random.Range(0,100) < 20) {
+                Jump();
+            }
         }
     }
 
