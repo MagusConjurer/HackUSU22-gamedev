@@ -31,12 +31,15 @@ public class BaseEntity : MonoBehaviour
         OnStart();
     }
 
+    /// <summary>
+    /// Called on Start()
+    /// </summary>
     protected virtual void OnStart() {}
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 decsicion = GetDecsicion();
+        Vector2 decsicion = GetDecision();
 
         if (decsicion.x > 0) {
             rb.velocity = new Vector2 (decsicion.x * moveSpeedForwards, rb.velocity.y);
@@ -47,8 +50,8 @@ public class BaseEntity : MonoBehaviour
         if(decsicion.y > 0.1f && IsGrounded())
         {
             animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         UpdateAnimation(rb.velocity);
     }
@@ -62,7 +65,7 @@ public class BaseEntity : MonoBehaviour
         }
     }
 
-    protected void OnDeath() {
+    protected virtual void OnDeath() {
         GetComponent<BoxCollider2D>().enabled = false;
     }
 
@@ -104,7 +107,7 @@ public class BaseEntity : MonoBehaviour
     /// <summary>
     /// Where this entity wants to go
     /// </summary>
-    public virtual Vector2 GetDecsicion() {
+    protected virtual Vector2 GetDecision() {
         return new Vector2(0f,-1f);
     }
 }
