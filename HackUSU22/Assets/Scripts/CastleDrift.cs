@@ -21,6 +21,6 @@ public class CastleDrift : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        rb.velocity = new Vector2(-4f, 0);
+        rb.velocity = new Vector2(-10f, 0);
     }
 }
