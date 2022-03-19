@@ -17,6 +17,8 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
+    public bool shouldBeDeletedFromTheGame = false;
+
     // This entity should have all of these
     protected Rigidbody2D rb;
     protected BoxCollider2D coll;
@@ -55,6 +57,11 @@ public class BaseEntity : MonoBehaviour
         return rb.velocity;
     }
 
+    private void setTBDeleted()
+    {
+        shouldBeDeletedFromTheGame = true;
+    }
+
     /// <summary>
     /// Called on Start()
     /// </summary>
@@ -83,7 +90,7 @@ public class BaseEntity : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         if (currentHealth >= 0) {
             sb.Append("|");
-            for (int i = 0; i < currentHealth / 13; i++ ) {
+            for (int i = 0; i < currentHealth / 7; i++ ) {
                 sb.Append("\\./");
             }
             sb.Append("|");
@@ -120,6 +127,7 @@ public class BaseEntity : MonoBehaviour
 
     protected virtual void OnDeath() {
         coll.enabled = false;
+        Invoke("setTBDeleted", 2);
     }
 
      void DestroyBlood() {

@@ -43,7 +43,7 @@ public class BossEnemy : Enemy {
         }
 
         if (phase == BossPhase.Phase2) {
-            if (UnityEngine.Random.Range(0,100) < 20) {
+            if (UnityEngine.Random.Range(0,10, 500) < 1) {
                 Jump();
             }
         }
