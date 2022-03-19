@@ -15,7 +15,7 @@ public class EnemyCombat : Combat
         {
             Attack(hitPlayers);
             animator.SetTrigger("Attack");
-            nextAttackTime = Time.time + attackRate;
+            nextAttackTime = Time.time + 1f / attackRate;
         }
     }
 

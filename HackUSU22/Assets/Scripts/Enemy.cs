@@ -19,7 +19,7 @@ public class Enemy : BaseEntity
 
     protected override void OnDeath()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        base.OnDeath();
     }
 
     /// <summary>

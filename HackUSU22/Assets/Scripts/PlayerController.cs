@@ -50,10 +50,10 @@ public class PlayerController : BaseEntity
     {
     }
 
-    protected override void OnDeath()
+    protected override void OnDeath() 
     {
+        base.OnDeath();
         Debug.Log("Died");
         sndSource.PlayOneShot(scream);
-        base.OnDeath();
     }
 }
