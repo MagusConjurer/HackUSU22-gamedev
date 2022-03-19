@@ -14,7 +14,10 @@ public class Combat : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
     }
+
+    protected virtual void OnStart() {}
 
     // Debug method to visualize the range of the attack
     private void OnDrawGizmos()

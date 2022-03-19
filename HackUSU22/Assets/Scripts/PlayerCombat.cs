@@ -6,30 +6,32 @@ using UnityEngine;
 
 public class PlayerCombat : Combat
 {
+    public PlayerController playerController;
+
     private float nextAttackTime = 0f;
-    private bool chargingAttack = false;
+
+    protected override void OnStart() {
+        attackRange = 0.3f;
+        attackDamage = 25;
+        attackRate = 0.2f;
+    }
+
+    private bool attackHeld = false;
 
     // Update is called once per frame
     void Update()
     {
-        // Cancels attack
-        if (Input.GetButtonDown("Fire2")) {
-            chargingAttack = false;
-        }
-
         if (Input.GetButtonDown("Fire1"))
         { 
- 
-
             // if this attack is newly called
-            if (!chargingAttack) {
+            if (!attackHeld && Time.time > nextAttackTime) {
                 AttackPrepare();
                 nextAttackTime = Time.time + attackRate;
             }
-
-            chargingAttack = true;
+            attackHeld = true;
         }
-        else if (Input.GetButtonUp("Fire1")) {
+        if (Input.GetButtonUp("Fire1")) {
+            attackHeld = false;
             // If released after attack rate
             if(Time.time > nextAttackTime)
             {
@@ -45,14 +47,12 @@ public class PlayerCombat : Combat
 
     private void AttackPrepare()
     {
-        // TODO: Play attack anim
         animator.SetTrigger("Attack Prepare");
     }
 
     private void AttackRelease()
     {
         Debug.Log("Attack Release");
-        chargingAttack = false;
         animator.SetTrigger("Attack Release");
     }
 
