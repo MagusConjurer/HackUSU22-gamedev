@@ -14,9 +14,12 @@ public class BackgroundController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         backCollider = GetComponent<BoxCollider2D>();
+        GameObject curr = GetComponent<GameObject>();
 
         width = backCollider.size.x;
         backCollider.enabled = false;
+
+        TileGeneration.generateTile();
     }
 
     // Update is called once per frame

@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public static float moveSpeed;
+    public static float moveSpeed = 10f;
     public float jumpForce;
     public Camera mainCam;
 
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
 
-    private float dirX;
+    private static float dirX;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         dirX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2 (dirX * moveSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
@@ -54,6 +54,6 @@ public class PlayerController : MonoBehaviour
 
     public static float getDirection()
     {
-        return moveSpeed;
+        return dirX * moveSpeed;
     }
 }
