@@ -85,7 +85,6 @@ public class PlayerController : BaseEntity
         base.OnDeath();
         Debug.Log("Died");
         sndSource.PlayOneShot(scream);
-        Destroy(this, 4);
     }
 
     private void OffTheMap()

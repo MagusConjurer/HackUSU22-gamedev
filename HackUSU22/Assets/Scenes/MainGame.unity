@@ -4770,7 +4770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8684834030313791127, guid: dbb3a4f1fd4390345ab7a9c911d09b44, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbb3a4f1fd4390345ab7a9c911d09b44, type: 3}
@@ -8291,6 +8291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019509497}
+  - component: {fileID: 2019509498}
   m_Layer: 0
   m_Name: Waypoints
   m_TagString: Untagged
@@ -8322,6 +8323,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2019509498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019509496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62feb01ebca9aa84ebe27fed94af9dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnpoints: []
+  spawnDelay: 20
+  prefabs: []
+  spawnCap: 50
 --- !u!1 &2050091678
 GameObject:
   m_ObjectHideFlags: 0
@@ -8867,7 +8884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118484379000967910, guid: c9d9f6d77b89ddb4d8968d4356b86b11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 81.14417
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 9118484379000967910, guid: c9d9f6d77b89ddb4d8968d4356b86b11, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8911,7 +8928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9137733671874034682, guid: c9d9f6d77b89ddb4d8968d4356b86b11, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9d9f6d77b89ddb4d8968d4356b86b11, type: 3}
