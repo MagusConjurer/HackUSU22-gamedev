@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BaseEntity : MonoBehaviour
 {
+    public GameObject blood;
     public float moveSpeedForwards = 10;
     public float moveSpeedBackwards = 5;
     public float jumpForce = 10;
@@ -82,6 +83,7 @@ public class BaseEntity : MonoBehaviour
         PlayRandomSound();
         animator.SetTrigger("Take Damage");
         currentHealth -= damage;
+        Instantiate(blood, transform);
 
         if (currentHealth < 0) {
             OnDeath();
@@ -90,6 +92,10 @@ public class BaseEntity : MonoBehaviour
 
     protected virtual void OnDeath() {
         coll.enabled = false;
+    }
+
+    private void destroyBlood() {
+        Destroy(blood);
     }
 
     private void UpdateAnimation(Vector2 velocity)
