@@ -27,7 +27,7 @@ public class BackgroundController : MonoBehaviour
             rb.velocity = new Vector2(playerXDir, 0);
 
         // if beyond outer threshold tp image to reset position
-        if (transform.position.x < -width)
+        if (transform.position.x < -width && tag == "Tapestry")
         {
             Vector2 resetPos = new Vector2(2f * width, 0);
             transform.position = (Vector2)transform.position + resetPos;
