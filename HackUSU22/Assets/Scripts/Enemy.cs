@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
+    public Transform player;
+    public float accuracy;
     protected override void OnStart() {
     }
 
@@ -18,6 +20,15 @@ public class Enemy : BaseEntity
     /// Where this entity wants to go
     /// </summary>
     protected override Vector2 GetDecision() {
-        return new Vector2(0f,-1f);
+        Vector3 direction = player.position - transform.position;
+        Debug.DrawRay(transform.position, direction, Color.red);
+        if (direction.magnitude > accuracy)
+        {
+            return new Vector2(direction.x, direction.y);
+        }
+        else
+        {
+            return new Vector2(0f, 0f);
+        }
     }
 }
