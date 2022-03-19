@@ -20,51 +20,73 @@ public class PlayerCombat : Combat
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        { 
-            // if this attack is newly called
-            if (!attackHeld) {
-                AttackPrepare();
+        if (Time.time > nextAttackTime)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Attack();
                 nextAttackTime = Time.time + attackRate;
             }
-            attackHeld = true;
         }
-        if (Input.GetButtonUp("Fire1")) {
-            // If released after attack rate
-            if(Time.time > nextAttackTime)
-            {
-                AttackRelease();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            // Released before attack rate over
-            else {
-                Invoke("AttackRelease", Time.time - nextAttackTime);
-            }
-        }
+        //if (Input.GetButtonDown("Fire1"))
+        //{ 
+        //    // if this attack is newly called
+        //    if (!attackHeld) {
+        //        AttackPrepare();
+        //        nextAttackTime = Time.time + attackRate;
+        //    }
+        //    attackHeld = true;
+        //}
+        //if (Input.GetButtonUp("Fire1")) {
+        //    attackHeld = false;
+        //    // If released after attack rate
+        //    if(Time.time > nextAttackTime)
+        //    {
+        //        AttackRelease();
+        //        nextAttackTime = Time.time + 1f / attackRate;
+        //    }
+        //    // Released before attack rate over
+        //    else {
+        //        Invoke("AttackRelease", Time.time - nextAttackTime);
+        //    }
+        //}
     }
 
-    private void AttackPrepare()
+    private void Attack()
     {
         animator.SetTrigger("Attack Prepare");
-    }
-
-    private void AttackRelease()
-    {
-        attackHeld = false;
-        Debug.Log("Attack Release");
-        animator.SetTrigger("Attack Release");
-        GetComponent<PlayerController>().PlayRandomClash();
-    }
-
-    public void AttackSwing() {
-        Debug.Log("Attack Swing()");
         GetComponent<PlayerController>().PlayRandomClash();
         // Detect in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers);
         // Apply damage
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+        animator.SetTrigger("Attack Release");
     }
+
+    //private void AttackPrepare()
+    //{
+    //    animator.SetTrigger("Attack Prepare");
+    //}
+
+    //private void AttackRelease()
+    //{
+    //    Debug.Log("Attack Release");
+    //    animator.SetTrigger("Attack Release");
+    //    GetComponent<PlayerController>().PlayRandomClash();
+    //}
+
+    //public void AttackSwing() {
+    //    Debug.Log("Attack Swing()");
+    //    GetComponent<PlayerController>().PlayRandomClash();
+    //    // Detect in range
+    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers);
+    //    // Apply damage
+    //    foreach(Collider2D enemy in hitEnemies)
+    //    {
+    //        enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+    //    }
+    //}
 }
