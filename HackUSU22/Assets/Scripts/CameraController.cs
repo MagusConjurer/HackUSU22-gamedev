@@ -12,6 +12,18 @@ public class CameraController : MonoBehaviour
     {
         transform.position = new Vector3(player.position.x, player.position.y + cameraOffsetY, transform.position.z);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "MountainUp")
+        {
+            Camera.main.fieldOfView *= 2;
+        } else if(collision.gameObject.name == "MountainDown")
+        {
+            Camera.main.fieldOfView /= 2;
+        }
+    }
+
 }
 
 
