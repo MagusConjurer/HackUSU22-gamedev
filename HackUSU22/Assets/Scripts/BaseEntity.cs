@@ -5,9 +5,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BaseEntity : MonoBehaviour
 {
-    public GameObject blood;
+    public GameObject bloodSprite;
     public float moveSpeedForwards = 10;
     public float moveSpeedBackwards = 5;
     public float jumpForce = 10;
@@ -15,12 +16,13 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
-    public static AudioSource sndSource;
-
     // This entity should have all of these
     protected Rigidbody2D rb;
     protected BoxCollider2D coll;
     protected SpriteRenderer sprite;
+    protected AudioSource sndSource;
+
+    private GameObject spawnedBlood;
 
     // Please override
     public int maxHealth = 100;
@@ -81,21 +83,24 @@ public class BaseEntity : MonoBehaviour
 
     public void TakeDamage(int damage) {
         PlayRandomSound();
-        animator.SetTrigger("Take Damage");
+        animator.SetTrigger("TakeDamage");
         currentHealth -= damage;
-        Instantiate(blood, transform);
+        spawnedBlood = Instantiate(bloodSprite, transform);
+        spawnedBlood.transform.position = transform.position;
 
         if (currentHealth < 0) {
             OnDeath();
         }
+
+        Invoke("DestroyBlood", 2f);
     }
 
     protected virtual void OnDeath() {
         coll.enabled = false;
     }
 
-    private void destroyBlood() {
-        Destroy(blood);
+     void DestroyBlood() {
+        DestroyImmediate(spawnedBlood, true);
     }
 
     private void UpdateAnimation(Vector2 velocity)
