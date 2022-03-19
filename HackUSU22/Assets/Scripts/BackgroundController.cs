@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
 {
-    public GameObject player;
+    //public GameObject player;
     private Rigidbody2D rb;
     private BoxCollider2D backCollider;
     private float width;
@@ -22,8 +22,8 @@ public class BackgroundController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float playerXDir = -player.GetComponent<Rigidbody2D>().velocity.x;
-        rb.velocity = new Vector2(playerXDir, 0);
+        //float playerXDir = -player.GetComponent<Rigidbody2D>().velocity.x;
+        //rb.velocity = new Vector2(playerXDir, 0);
 
         // if beyond outer threshold tp image to reset position
         if (transform.position.x < -width)

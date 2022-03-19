@@ -8,7 +8,6 @@ public class PlayerCombat : Combat
 {
     public PlayerController playerController;
 
-    private bool chargingAttack = false;
     private float nextAttackTime = 0f;
 
     protected override void OnStart() {
@@ -17,21 +16,21 @@ public class PlayerCombat : Combat
         attackRate = 0.2f;
     }
 
+    private bool attackHeld = false;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         { 
-            Debug.Log("Fire1");
-            // if this attack is newly called
-            if (!chargingAttack) {
+            if (!attackHeld) {
                 AttackPrepare();
                 nextAttackTime = Time.time + attackRate;
             }
-
-            chargingAttack = true;
+            attackHeld = true;
         }
-        else if (Input.GetButtonUp("Fire1")) {
+        if (Input.GetButtonUp("Fire1")) {
+            attackHeld = false;
             // If released after attack rate
             if(Time.time > nextAttackTime)
             {
@@ -47,20 +46,17 @@ public class PlayerCombat : Combat
 
     private void AttackPrepare()
     {
-        // TODO: Play attack anim
         animator.SetTrigger("Attack Prepare");
     }
 
     private void AttackRelease()
     {
-        chargingAttack = false;
         Debug.Log("Attack Release");
         animator.SetTrigger("Attack Release");
     }
 
     public void AttackSwing() {
         Debug.Log("Attack Swing()");
-        chargingAttack = false;
         // Detect in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers);
         // Apply damage
