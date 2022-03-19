@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerCombat : Combat
 {
-    public PlayerController playerController;
 
     private float nextAttackTime = 0f;
 
@@ -24,7 +23,7 @@ public class PlayerCombat : Combat
         if (Input.GetButtonDown("Fire1"))
         { 
             // if this attack is newly called
-            if (!attackHeld && Time.time > nextAttackTime) {
+            if (!attackHeld) {
                 AttackPrepare();
                 nextAttackTime = Time.time + attackRate;
             }
@@ -54,10 +53,12 @@ public class PlayerCombat : Combat
     {
         Debug.Log("Attack Release");
         animator.SetTrigger("Attack Release");
+        GetComponent<PlayerController>().PlayRandomClash();
     }
 
     public void AttackSwing() {
         Debug.Log("Attack Swing()");
+        GetComponent<PlayerController>().PlayRandomClash();
         // Detect in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers);
         // Apply damage

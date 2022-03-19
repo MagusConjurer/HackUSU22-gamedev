@@ -14,7 +14,7 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
-    protected AudioSource sndSource;
+    public static AudioSource sndSource;
 
     // This entity should have all of these
     protected Rigidbody2D rb;
@@ -25,15 +25,26 @@ public class BaseEntity : MonoBehaviour
     public int maxHealth = 100;
     protected int currentHealth;
 
+    protected AudioClip[] clips;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-
         currentHealth = maxHealth;
+        sndSource = GetComponent<AudioSource>();
         OnStart();
+
+        clips = new AudioClip[] {
+            Resources.Load<AudioClip>("Audio/victory-is-mine"),
+            Resources.Load<AudioClip>("Audio/birds"),
+            Resources.Load<AudioClip>("Audio/hyuh"),
+            Resources.Load<AudioClip>("Audio/runnin"),
+            Resources.Load<AudioClip>("Audio/no-arms"),
+            Resources.Load<AudioClip>("Audio/stand-aside"),
+        };
     }
 
     public Vector2 GetVelocity() {
@@ -68,6 +79,7 @@ public class BaseEntity : MonoBehaviour
     protected virtual void OnUpdate() {}
 
     public void TakeDamage(int damage) {
+        PlayRandomSound();
         animator.SetTrigger("Take Damage");
         currentHealth -= damage;
 
@@ -122,5 +134,10 @@ public class BaseEntity : MonoBehaviour
     /// </summary>
     protected virtual Vector2 GetDecision() {
         return new Vector2(0f,0f);
+    }
+
+    public void PlayRandomSound() {
+        var r = new System.Random();
+        sndSource.PlayOneShot(clips[r.Next(1,clips.Length)]);
     }
 }
