@@ -11,18 +11,14 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.position.x, player.position.y + cameraOffsetY, transform.position.z);
+        if (player.position.x > 160 && player.position.x < 240)
+        {
+            Camera.main.orthographicSize = 10.0f;
+        }
+        else
+            Camera.main.orthographicSize = 8.0f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "MountainUp")
-        {
-            Camera.main.fieldOfView *= 2;
-        } else if(collision.gameObject.name == "MountainDown")
-        {
-            Camera.main.fieldOfView /= 2;
-        }
-    }
 
 }
 

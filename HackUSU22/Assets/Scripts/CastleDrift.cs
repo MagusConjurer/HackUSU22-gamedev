@@ -23,6 +23,7 @@ public class CastleDrift : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        speed = -10f;
+        if(other.gameObject.name == "Player")
+            speed = 2f;
     }
 }
