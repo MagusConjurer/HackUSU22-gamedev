@@ -8,8 +8,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : BaseEntity
 {
+    private AudioClip scream = Resources.Load<AudioClip>("Audio/scream");
+
     protected override void OnStart() {
         jumpForce = 10;
+        maxHealth = 100;
     }
 
     protected override Vector2 GetDecision() {
@@ -30,7 +33,7 @@ public class PlayerController : BaseEntity
     protected override void OnDeath()
     {
         Debug.Log("Died");
-        GetComponent<AudioSource>().Play();
+        sndSource.PlayOneShot(scream);
         base.OnDeath();
     }
 }

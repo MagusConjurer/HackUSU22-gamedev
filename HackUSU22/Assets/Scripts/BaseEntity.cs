@@ -14,6 +14,8 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
+    protected AudioSource sndSource;
+
     // This entity should have all of these
     protected Rigidbody2D rb;
     protected BoxCollider2D coll;
@@ -75,7 +77,7 @@ public class BaseEntity : MonoBehaviour
     }
 
     protected virtual void OnDeath() {
-        GetComponent<BoxCollider2D>().enabled = false;
+        coll.enabled = false;
     }
 
     private void UpdateAnimation(Vector2 velocity)

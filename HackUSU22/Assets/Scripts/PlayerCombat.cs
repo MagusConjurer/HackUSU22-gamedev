@@ -14,7 +14,7 @@ public class PlayerCombat : Combat
     protected override void OnStart() {
         attackRange = 0.3f;
         attackDamage = 25;
-        attackRate = 0.8f;
+        attackRate = 0.2f;
     }
 
     // Update is called once per frame
