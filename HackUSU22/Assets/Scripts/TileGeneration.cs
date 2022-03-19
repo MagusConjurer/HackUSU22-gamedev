@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class TileGeneration : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static List<GameObject> tiles;
+
+    private void Start()
     {
-        
+        tiles = new List<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //private void Update()
+    //{
+        //foreach(GameObject o in tiles)
+        //{
+        //    float x = o.transform.parent.position.x;
+        //    o.transform.position = new Vector3(x, -2);
+        //}
+    //}
 
-    public static void generateTile(GameObject curr)
+    public static void generateTile(Transform curr, float width)
     {
-        Vector2 parent = curr.transform.position;
+        Vector2 parent = (Vector2)curr.position;
 
-        GameObject wall = new GameObject("wall_1");
+        GameObject wall = new GameObject("ground_1");
+        wall.tag = "ground";
         wall.transform.parent = curr.transform;
-        wall.transform.position = new Vector2(parent.x + 50, -2);
-        wall.transform.localScale = new Vector3(20, 1);
+        wall.transform.position = new Vector2(parent.x + 38, -2);
+        wall.transform.localScale = new Vector3(width / 1.3f, 1);
 
         SpriteRenderer wallSp = wall.AddComponent<SpriteRenderer>();
         Texture2D tex = new Texture2D(128, 128);
@@ -38,6 +43,10 @@ public class TileGeneration : MonoBehaviour
 
         Rigidbody2D wrb = wall.AddComponent<Rigidbody2D>();
         wrb.gravityScale = 0f;
-        wrb.simulated = false;
+        wrb.simulated = true;
+        wrb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+
+        tiles.Add(wall);
+
     }
 }

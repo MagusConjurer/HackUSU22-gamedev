@@ -14,12 +14,11 @@ public class BackgroundController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         backCollider = GetComponent<BoxCollider2D>();
-        GameObject curr = GetComponent<GameObject>();
 
         width = backCollider.size.x;
         backCollider.enabled = false;
 
-        TileGeneration.generateTile();
+        TileGeneration.generateTile(transform, width);
     }
 
     // Update is called once per frame
@@ -31,6 +30,10 @@ public class BackgroundController : MonoBehaviour
         {
             Vector2 resetPos = new Vector2(2f * width, 0);
             transform.position = (Vector2)transform.position + resetPos;
+        }
+        foreach(GameObject o in TileGeneration.tiles)
+        {
+            o.transform.position = new Vector3(transform.position.x, -2);
         }
     }
 }
