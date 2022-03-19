@@ -31,6 +31,10 @@ public class BaseEntity : MonoBehaviour
         OnStart();
     }
 
+    public Vector2 GetVelocity() {
+        return rb.velocity;
+    }
+
     /// <summary>
     /// Called on Start()
     /// </summary>
@@ -56,6 +60,8 @@ public class BaseEntity : MonoBehaviour
         UpdateAnimation(rb.velocity);
     }
 
+    protected virtual void OnUpdate() {}
+
     public void TakeDamage(float damage) {
         animator.SetTrigger("Take Damage");
         health -= damage;
@@ -71,15 +77,17 @@ public class BaseEntity : MonoBehaviour
 
     private void UpdateAnimation(Vector2 velocity)
     {
-        if (velocity.x > 0f)
+        animator.SetBool("Forwards", false);
+        animator.SetBool("Backwards", false);
+        if (velocity.x > 0.1f)
         {
             // Set anim state for walk animation
-            animator.SetTrigger("Forwards");
+            animator.SetBool("Forwards", true);
         }
-        else if (velocity.x < 0f)
+        else if (velocity.x < -0.1f)
         {
             // Slower back step?
-            animator.SetTrigger("Backwards");
+            animator.SetBool("Backwards", true);
         }
         else
         {
@@ -101,7 +109,7 @@ public class BaseEntity : MonoBehaviour
 
     private bool IsFalling()
     {
-        return rb.velocity.y < 0;
+        return rb.velocity.y < -0.3;
     }
 
     /// <summary>

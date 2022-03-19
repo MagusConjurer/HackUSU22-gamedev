@@ -25,4 +25,8 @@ public class PlayerController : BaseEntity
         }
         return new Vector2(dirX, dirY);
     }
+
+    protected override void OnUpdate()
+    {
+    }
 }
