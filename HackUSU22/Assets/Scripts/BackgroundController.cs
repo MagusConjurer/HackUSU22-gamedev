@@ -16,7 +16,7 @@ public class BackgroundController : MonoBehaviour
         backCollider = GetComponent<BoxCollider2D>();
 
         width = backCollider.size.x;
-
+        backCollider.enabled = false;
     }
 
     // Update is called once per frame
