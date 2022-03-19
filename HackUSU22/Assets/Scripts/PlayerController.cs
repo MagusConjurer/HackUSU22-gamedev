@@ -15,7 +15,6 @@ public class PlayerController : BaseEntity
         health = 100;
     }
 
-
     private Vector2 GetDescision() {
         var dirX = Input.GetAxisRaw("Horizontal");
         float dirY;
@@ -25,5 +24,10 @@ public class PlayerController : BaseEntity
             dirY = 0f;
         }
         return new Vector2(dirX, dirY);
+    }
+
+    public static float getDirection()
+    {
+        return dirX * moveSpeed;
     }
 }
