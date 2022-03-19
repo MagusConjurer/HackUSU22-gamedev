@@ -25,9 +25,4 @@ public class PlayerController : BaseEntity
         }
         return new Vector2(dirX, dirY);
     }
-
-    public static float getDirection()
-    {
-        return dirX * moveSpeed;
-    }
 }

@@ -50,8 +50,8 @@ public class BaseEntity : MonoBehaviour
         if(decsicion.y > 0.1f && IsGrounded())
         {
             animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         UpdateAnimation(rb.velocity);
     }
