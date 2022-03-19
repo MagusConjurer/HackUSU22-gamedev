@@ -22,7 +22,7 @@ public class PlayerCombat : Combat
  
 
             // if this attack is newly called
-            if (!chargingAttack) {
+            if (!chargingAttack && Time.time > nextAttackTime) {
                 AttackPrepare();
                 nextAttackTime = Time.time + attackRate;
             }
