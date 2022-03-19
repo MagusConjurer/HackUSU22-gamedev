@@ -20,6 +20,8 @@ public class Enemy : BaseEntity
     protected override void OnDeath()
     {
         base.OnDeath();
+        StandardSpawning spawner = GameObject.FindGameObjectWithTag("StandardSpawner").GetComponent<StandardSpawning>();
+        spawner.DestroyEnemy(GetComponentInParent<GameObject>());
     }
 
     /// <summary>

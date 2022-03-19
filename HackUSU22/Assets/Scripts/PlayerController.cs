@@ -52,6 +52,17 @@ public class PlayerController : BaseEntity
     {
         base.OnUpdate();
         OffTheMap();
+        if (transform.position.x > 250)
+        {
+            rb.gravityScale = 0.8f;
+            jumpForce = 20;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
+            jumpForce = 10;
+        }
+
     }
 
     protected override void OnDeath() 

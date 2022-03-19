@@ -14,9 +14,13 @@ public class CameraController : MonoBehaviour
         if (player.position.x > 160 && player.position.x < 240)
         {
             Camera.main.orthographicSize = 10.0f;
+            cameraOffsetY = 7;
         }
         else
+        {
             Camera.main.orthographicSize = 8.0f;
+            cameraOffsetY = 7;
+        }
     }
 
 
