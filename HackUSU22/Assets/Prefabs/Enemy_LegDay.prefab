@@ -160,7 +160,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 972454878792787838}
   m_Bounds:
-    m_Center: {x: -0.0000076293945, y: -0.0059263706, z: 0}
+    m_Center: {x: 0, y: -0.0059273243, z: 0}
     m_Extent: {x: 1.9200007, y: 2.8190756, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -268,8 +268,8 @@ MonoBehaviour:
   - {fileID: 8501864256240942157}
   - {fileID: 2009324418985049251}
   m_Bounds:
-    m_Center: {x: 0.00000023841858, y: 0.0020489693, z: 0}
-    m_Extent: {x: 2.2299993, y: 5.837951, z: 0}
+    m_Center: {x: 0.0000030994415, y: 0.0020484924, z: 0}
+    m_Extent: {x: 2.2299984, y: 5.8379507, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &2971129014391045472
@@ -372,8 +372,8 @@ MonoBehaviour:
   - {fileID: 1332052749586887330}
   - {fileID: 972454878792787838}
   m_Bounds:
-    m_Center: {x: 0.002430439, y: 0.0017178059, z: 0}
-    m_Extent: {x: 2.9275708, y: 2.3582802, z: 0}
+    m_Center: {x: 0.0024294853, y: 0.0017187595, z: 0}
+    m_Extent: {x: 2.9275718, y: 2.3582802, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &3499817433925110310
@@ -658,8 +658,8 @@ MonoBehaviour:
   - {fileID: 8501864256240942157}
   - {fileID: 6123478539781171597}
   m_Bounds:
-    m_Center: {x: 0, y: -0.00043165684, z: 0}
-    m_Extent: {x: 2.7399998, y: 1.3266199, z: 0}
+    m_Center: {x: 0, y: -0.00043022633, z: 0}
+    m_Extent: {x: 2.7399998, y: 1.3266194, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &6508237034891565462
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 5344250886317136482}
   - component: {fileID: 5344250886317136494}
   - component: {fileID: 5344250886317136495}
-  - component: {fileID: 5344250886317136492}
+  - component: {fileID: 7625720598198744010}
   m_Layer: 7
   m_Name: Enemy_LegDay
   m_TagString: Untagged
@@ -789,7 +789,7 @@ MonoBehaviour:
   attackRange: 0.5
   attackRate: 0.5
   attackDamage: 5
---- !u!114 &5344250886317136492
+--- !u!114 &7625720598198744010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -798,19 +798,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6508237034891565462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8f268d8d79ba04b85eb6b18d94f40d, type: 3}
+  m_Script: {fileID: 11500000, guid: 45a5a763737f3738fa7b6ea536444a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 0}
   moveSpeedForwards: 10
   moveSpeedBackwards: 5
   jumpForce: 10
   ground:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 5344250886317136494}
-  maxHealth: 100
+  animator: {fileID: 0}
+  maxHealth: 200
   player: {fileID: 0}
-  accuracy: 4
+  accuracy: 0
+  followRange: 10
 --- !u!1 &6824801907102677527
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,8 +915,8 @@ MonoBehaviour:
   - {fileID: 2009324418985049251}
   - {fileID: 6123478539781171597}
   m_Bounds:
-    m_Center: {x: -0.0000014305115, y: -0.00000047683716, z: 0}
-    m_Extent: {x: 3.4750009, y: 5.3549986, z: 0}
+    m_Center: {x: -0.00000047683716, y: 0, z: 0}
+    m_Extent: {x: 3.474998, y: 5.3549986, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7849632893532044721

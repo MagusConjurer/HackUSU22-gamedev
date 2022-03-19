@@ -5,6 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BaseEntity : MonoBehaviour
 {
     public GameObject blood;
@@ -102,12 +103,12 @@ public class BaseEntity : MonoBehaviour
     {
         animator.SetBool("Forwards", false);
         animator.SetBool("Backwards", false);
-        if (velocity.x > 0.1f)
+        if (velocity.x > 0.2f)
         {
             // Set anim state for walk animation
             animator.SetBool("Forwards", true);
         }
-        else if (velocity.x < -0.1f)
+        else if (velocity.x < -0.2f)
         {
             // Slower back step?
             animator.SetBool("Backwards", true);
@@ -145,6 +146,6 @@ public class BaseEntity : MonoBehaviour
 
     public void PlayRandomSound() {
         var r = new System.Random();
-        sndSource.PlayOneShot(clips[r.Next(1,clips.Length)]);
+        //sndSource.PlayOneShot(clips[r.Next(1,clips.Length)]);
     }
 }
