@@ -11,7 +11,19 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.position.x, player.position.y + cameraOffsetY, transform.position.z);
+        if (player.position.x > 160 && player.position.x < 240)
+        {
+            Camera.main.orthographicSize = 18.0f;
+            cameraOffsetY = 7;
+        }
+        else
+        {
+            Camera.main.orthographicSize = 8.0f;
+            cameraOffsetY = 7;
+        }
     }
+
+
 }
 
 

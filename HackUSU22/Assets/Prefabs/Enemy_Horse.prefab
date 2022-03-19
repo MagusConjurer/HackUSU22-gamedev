@@ -725,7 +725,7 @@ Transform:
   m_GameObject: {fileID: 9137733671874034682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 81.14417, y: 5.969815, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 3727397641471300344}
   - {fileID: 3974579843698576622}
@@ -833,6 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8f268d8d79ba04b85eb6b18d94f40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 0}
   moveSpeedForwards: 10
   moveSpeedBackwards: 5
   jumpForce: 10
@@ -843,3 +844,4 @@ MonoBehaviour:
   maxHealth: 100
   player: {fileID: 0}
   accuracy: 4
+  followRange: 10

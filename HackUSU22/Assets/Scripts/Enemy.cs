@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 //using System.Numerics;
 using UnityEngine;
 
@@ -19,7 +19,9 @@ public class Enemy : BaseEntity
 
     protected override void OnDeath()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        base.OnDeath();
+        StandardSpawning spawner = GameObject.FindGameObjectWithTag("StandardSpawner").GetComponent<StandardSpawning>();
+        spawner.DestroyEnemy(gameObject);
     }
 
     /// <summary>
@@ -30,6 +32,8 @@ public class Enemy : BaseEntity
         Debug.DrawRay(transform.position, direction, Color.red);
         if (direction.magnitude > accuracy && TargetInRange())
         {
+            if(direction.x > 0)
+                sprite.flipX = true;
             return new Vector2(direction.x, direction.y).normalized;
         }
         else
