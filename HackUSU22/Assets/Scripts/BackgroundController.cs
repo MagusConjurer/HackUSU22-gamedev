@@ -31,7 +31,6 @@ public class BackgroundController : MonoBehaviour
         {
             Vector2 resetPos = new Vector2(2f * width, 0);
             transform.position = (Vector2)transform.position + resetPos;
-
         }
 
     }
