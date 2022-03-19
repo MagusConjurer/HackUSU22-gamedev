@@ -23,10 +23,8 @@ public class PlayerCombat : Combat
     {
         if (Input.GetButtonDown("Fire1"))
         { 
- 
-
             // if this attack is newly called
-            if (!chargingAttack && Time.time > nextAttackTime) {
+            if (!attackHeld && Time.time > nextAttackTime) {
                 AttackPrepare();
                 nextAttackTime = Time.time + attackRate;
             }
