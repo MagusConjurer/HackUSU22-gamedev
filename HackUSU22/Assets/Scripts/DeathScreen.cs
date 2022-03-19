@@ -8,7 +8,8 @@ public class DeathScreen : MonoBehaviour
 {
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        Scene sc = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(sc.name);
     }
 
     public void QuitGame()

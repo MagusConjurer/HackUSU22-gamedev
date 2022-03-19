@@ -43,11 +43,13 @@ public class BossEnemy : Enemy {
         }
 
         if (phase == BossPhase.Phase2) {
-            if (UnityEngine.Random.Range(0,10, 500) < 1) {
+            if (UnityEngine.Random.Range(0,500) < 1) {
                 Jump();
             }
         }
     }
+
+    
 
     private void StartBossBattle() {
         var namebar = healthbarCanvas.GetComponentInChildren<UnityEngine.UI.Text>();
