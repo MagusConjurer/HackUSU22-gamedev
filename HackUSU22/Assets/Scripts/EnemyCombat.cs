@@ -14,6 +14,7 @@ public class EnemyCombat : Combat
         if (Time.time > nextAttackTime && hitPlayers.Length > 0)
         {
             Attack(hitPlayers);
+            animator.SetTrigger("Attack");
             nextAttackTime = Time.time + attackRate;
         }
     }
