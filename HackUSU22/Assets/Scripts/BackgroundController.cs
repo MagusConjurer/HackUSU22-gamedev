@@ -23,11 +23,10 @@ public class BackgroundController : MonoBehaviour
     void FixedUpdate()
     {
         float playerXDir = -player.GetComponent<Rigidbody2D>().velocity.x;
-        if (rb.velocity.x != playerXDir)
-            rb.velocity = new Vector2(playerXDir, 0);
+        rb.velocity = new Vector2(playerXDir, 0);
 
         // if beyond outer threshold tp image to reset position
-        if (transform.position.x < -width && tag == "Tapestry")
+        if (transform.position.x < -width)
         {
             Vector2 resetPos = new Vector2(2f * width, 0);
             transform.position = (Vector2)transform.position + resetPos;
