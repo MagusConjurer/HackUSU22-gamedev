@@ -11,10 +11,12 @@ public class PlayerController : BaseEntity
 {
     private AudioClip scream;
     private AudioClip[] clashes;
+    public GameObject deathScreen;
 
     protected override void OnStart() {
         jumpForce = 10;
         maxHealth = 100;
+        deathScreen.SetActive(false);
         scream = Resources.Load<AudioClip>("Audio/scream");
         clashes = new AudioClip[] {
          Resources.Load<AudioClip>("Audio/clash1"),
@@ -48,6 +50,8 @@ public class PlayerController : BaseEntity
 
     protected override void OnUpdate()
     {
+        base.OnUpdate();
+        OffTheMap();
     }
 
     protected override void OnDeath() 
@@ -55,5 +59,18 @@ public class PlayerController : BaseEntity
         base.OnDeath();
         Debug.Log("Died");
         sndSource.PlayOneShot(scream);
+    }
+
+    private void OffTheMap()
+    {
+        if (transform.position.y < -20f)
+        {
+            deathScreen.SetActive(true);
+            rb.gravityScale = 0;
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 }
