@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
+    public GameObject DeathScreenCanvas;
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        DeathScreenCanvas.SetActive(false);
     }
 
     public void QuitGame()
     {
-        QuitGame();
+        Application.Quit();
     }
 }
