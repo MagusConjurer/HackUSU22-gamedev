@@ -123,6 +123,7 @@ public class BaseEntity : MonoBehaviour
         } else {
             animator.SetBool("Falling", false);
         }
+        OnUpdate();
     }
 
     private bool IsGrounded()

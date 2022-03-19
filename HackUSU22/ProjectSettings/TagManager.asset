@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tapestry
+  - Mountain
   layers:
   - Default
   - TransparentFX
