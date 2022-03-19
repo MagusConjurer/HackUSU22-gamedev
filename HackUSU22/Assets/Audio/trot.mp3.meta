@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d6e602bdf06764196a36bdd508db0d48
+=======
+guid: 1c500aa3d418b2e4da66d085f2236dde
+>>>>>>> origin/cameron
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
