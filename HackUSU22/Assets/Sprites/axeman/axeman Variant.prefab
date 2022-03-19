@@ -617,7 +617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5687290163205944616, guid: 5da9ad614b77d267eb5066706b4b8cf9, type: 3}
       propertyPath: m_Name
-      value: axeman
+      value: axeman Variant
       objectReference: {fileID: 0}
     - target: {fileID: -2409133614233495233, guid: 5da9ad614b77d267eb5066706b4b8cf9, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -1049,7 +1049,7 @@ Animator:
   m_GameObject: {fileID: 3921757211836131780}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f45b6ea52fa05aef8f3bd04bc2f8b1c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 92d55d98a877521bba85ed3513239dce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
