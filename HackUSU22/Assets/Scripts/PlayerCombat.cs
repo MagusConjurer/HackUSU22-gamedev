@@ -8,9 +8,9 @@ public class PlayerCombat : MonoBehaviour
 {
     public Transform attackPoint;
     public LayerMask enemyLayers;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.3f;
     public int attackDamage = 25;
-    public float attackRate = 0.5f;
+    public float attackRate = 0.3f;
     public Animator animator;
     public PlayerController playerController;
 
@@ -20,15 +20,9 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Cancels attack
-        if (Input.GetButtonDown("Fire2")) {
-            chargingAttack = false;
-        }
-
         if (Input.GetButtonDown("Fire1"))
         { 
- 
-
+            Debug.Log("Fire1");
             // if this attack is newly called
             if (!chargingAttack) {
                 AttackPrepare();
@@ -59,13 +53,14 @@ public class PlayerCombat : MonoBehaviour
 
     private void AttackRelease()
     {
-        Debug.Log("Attack Release");
         chargingAttack = false;
+        Debug.Log("Attack Release");
         animator.SetTrigger("Attack Release");
     }
 
     public void AttackSwing() {
         Debug.Log("Attack Swing()");
+        chargingAttack = false;
         // Detect in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         // Apply damage
