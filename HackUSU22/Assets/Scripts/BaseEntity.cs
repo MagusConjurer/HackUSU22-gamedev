@@ -17,6 +17,8 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
+    public bool shouldBeDeletedFromTheGame = false;
+
     // This entity should have all of these
     protected Rigidbody2D rb;
     protected BoxCollider2D coll;
@@ -55,6 +57,11 @@ public class BaseEntity : MonoBehaviour
         return rb.velocity;
     }
 
+    private void setTBDeleted()
+    {
+        shouldBeDeletedFromTheGame = true;
+    }
+
     /// <summary>
     /// Called on Start()
     /// </summary>
@@ -66,14 +73,19 @@ public class BaseEntity : MonoBehaviour
         Vector2 decision = GetDecision();
 
         if (decision.x > 0) {
-            rb.velocity = new Vector2 (decision.x * moveSpeedForwards, rb.velocity.y);
+            rb.velocity = new Vector2(decision.x * moveSpeedForwards, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2 (decision.x * moveSpeedBackwards, rb.velocity.y);
+            rb.velocity = new Vector2(decision.x * moveSpeedBackwards, rb.velocity.y);
         }
 
-        if(decision.y > 0.1f && IsGrounded())
+        if (decision.y > 0.1f && IsGrounded())
         {
             Jump();
+        }
+
+        if (currentHealth <= 0)
+        {
+            OnDeath();
         }
 
         UpdateAnimation(rb.velocity);
@@ -83,7 +95,7 @@ public class BaseEntity : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         if (currentHealth >= 0) {
             sb.Append("|");
-            for (int i = 0; i < currentHealth / 13; i++ ) {
+            for (int i = 0; i < currentHealth / 7; i++ ) {
                 sb.Append("\\./");
             }
             sb.Append("|");
@@ -106,8 +118,9 @@ public class BaseEntity : MonoBehaviour
         spawnedBlood = Instantiate(bloodSprite, transform);
         spawnedBlood.transform.position = transform.position;
 
-        if (currentHealth < 0) {
+        if (currentHealth <= 0) {
             OnDeath();
+            return;
         }
 
         Invoke("DestroyBlood", 2f);
@@ -120,6 +133,9 @@ public class BaseEntity : MonoBehaviour
 
     protected virtual void OnDeath() {
         coll.enabled = false;
+        //Invoke("setTBDeleted", 2);
+        Destroy(this, 5);
+        Debug.Log("death called from " + rb.gameObject.name);
     }
 
      void DestroyBlood() {

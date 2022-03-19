@@ -9,8 +9,8 @@ public class DeathScreen : MonoBehaviour
     public GameObject DeathScreenCanvas;
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
-        DeathScreenCanvas.SetActive(false);
+        Scene sc = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(sc.name);
     }
 
     public void QuitGame()
