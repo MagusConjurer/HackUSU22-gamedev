@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -72,17 +70,34 @@ public class BaseEntity : MonoBehaviour
 
         if(decision.y > 0.1f && IsGrounded())
         {
-            animator.SetTrigger("Jump");
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump();
         }
 
         UpdateAnimation(rb.velocity);
     }
 
+    protected string GetDamageIndicator() {
+        StringBuilder sb = new StringBuilder();
+        if (currentHealth >= 0) {
+            sb.Append("|");
+            for (int i = 0; i < currentHealth / 13; i++ ) {
+                sb.Append("\\./");
+            }
+            sb.Append("|");
+            return sb.ToString();
+        } else {
+            return "<DEAD>";
+        }
+    }
+
+    protected void Jump() {
+            animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+
     protected virtual void OnUpdate() {}
 
     public void TakeDamage(int damage) {
-        PlayRandomSound();
         animator.SetTrigger("TakeDamage");
         currentHealth -= damage;
         spawnedBlood = Instantiate(bloodSprite, transform);
@@ -93,6 +108,11 @@ public class BaseEntity : MonoBehaviour
         }
 
         Invoke("DestroyBlood", 2f);
+        OnTakeDamage();
+    }
+
+    protected virtual void OnTakeDamage() {
+
     }
 
     protected virtual void OnDeath() {

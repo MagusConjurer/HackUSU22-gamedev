@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 //using System.Numerics;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,7 +15,10 @@ public class PlayerController : BaseEntity
     private AudioClip[] clashes;
     public GameObject deathScreen;
 
+    public GameObject playerCanvas;
+
     protected override void OnStart() {
+        UpdateDamageIndicator();
         jumpForce = 10;
         maxHealth = 100;
         deathScreen.SetActive(false);
@@ -47,6 +52,18 @@ public class PlayerController : BaseEntity
         }
         return new Vector2(dirX, dirY);
     }
+
+    protected override void OnTakeDamage()
+    {
+        PlayRandomClash();
+        UpdateDamageIndicator();
+    }
+
+    private void UpdateDamageIndicator() {
+        var h = playerCanvas.GetComponentInChildren<Text>();
+        h.text = GetDamageIndicator();
+    }
+
 
     protected override void OnUpdate()
     {

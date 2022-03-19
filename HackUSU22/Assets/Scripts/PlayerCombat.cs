@@ -30,7 +30,6 @@ public class PlayerCombat : Combat
             attackHeld = true;
         }
         if (Input.GetButtonUp("Fire1")) {
-            attackHeld = false;
             // If released after attack rate
             if(Time.time > nextAttackTime)
             {
@@ -51,6 +50,7 @@ public class PlayerCombat : Combat
 
     private void AttackRelease()
     {
+        attackHeld = false;
         Debug.Log("Attack Release");
         animator.SetTrigger("Attack Release");
         GetComponent<PlayerController>().PlayRandomClash();
