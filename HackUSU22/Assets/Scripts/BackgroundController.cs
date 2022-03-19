@@ -18,7 +18,7 @@ public class BackgroundController : MonoBehaviour
         width = backCollider.size.x;
         backCollider.enabled = false;
 
-        TileGeneration.generateTile(transform, width);
+        TileGeneration.generateGround(transform, width);
     }
 
     // Update is called once per frame

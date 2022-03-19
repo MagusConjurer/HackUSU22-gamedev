@@ -20,7 +20,12 @@ public class TileGeneration : MonoBehaviour
         //}
     //}
 
-    public static void generateTile(Transform curr, float width)
+    public static void generateFloatingPlots()
+    {
+
+    }
+
+    public static void generateGround(Transform curr, float width)
     {
         Vector2 parent = (Vector2)curr.position;
 
