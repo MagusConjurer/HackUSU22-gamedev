@@ -20,27 +20,31 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Cancels attack
+        if (Input.GetButtonDown("Fire2")) {
+            chargingAttack = false;
+        }
 
         if (Input.GetButtonDown("Fire1"))
         { 
-            if (chargingAttack) {
-                // Cancels attack
-                if (Input.GetButtonDown("Fire2")) {
-                    chargingAttack = false;
-                }
-                return;
+ 
+
+            // if this attack is newly called
+            if (!chargingAttack) {
+                AttackPrepare();
+                nextAttackTime = Time.time + attackRate;
             }
 
             chargingAttack = true;
-            AttackPrepare();
-            nextAttackTime = Time.time + attackRate;
         }
         else if (Input.GetButtonUp("Fire1")) {
+            // If released after attack rate
             if(Time.time > nextAttackTime)
             {
                 AttackRelease();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
+            // Released before attack rate over
             else {
                 Invoke("AttackRelease", Time.time - nextAttackTime);
             }
@@ -58,6 +62,10 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Attack Release");
         chargingAttack = false;
         animator.SetTrigger("Attack Release");
+    }
+
+    public void AttackSwing() {
+        Debug.Log("Attack Swing()");
         // Detect in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         // Apply damage
