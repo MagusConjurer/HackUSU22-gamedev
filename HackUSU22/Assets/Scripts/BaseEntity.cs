@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using System.Text;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
