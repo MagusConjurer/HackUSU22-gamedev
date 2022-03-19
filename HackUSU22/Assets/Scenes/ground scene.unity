@@ -3987,12 +3987,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1478349230689147916, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.4508481
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478349230689147916, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.005325939
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060208611189607, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060208611189607, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680872, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_Size.x
+      value: 2.56781
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680872, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.33602905
+      objectReference: {fileID: 0}
     - target: {fileID: 4046060210072680874, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1833744389}
+    - target: {fileID: 4046060210072680874, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: accuracy
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680874, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: followRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680875, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: attackRate
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680875, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4046060210072680875, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
       propertyPath: followRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046060210072680875, guid: 52769bdab6bcd3d4fb5e3ffa328ef018, type: 3}
+      propertyPath: attackDamage
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
