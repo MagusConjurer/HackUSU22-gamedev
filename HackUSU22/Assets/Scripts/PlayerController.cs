@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
+    public static float moveSpeed;
     public float jumpForce;
     public Camera mainCam;
 
@@ -50,5 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             // Set anim state
         }
+    }
+
+    public static float getDirection()
+    {
+        return moveSpeed;
     }
 }
