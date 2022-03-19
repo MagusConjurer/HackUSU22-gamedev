@@ -9,10 +9,7 @@ using UnityEngine;
 public class PlayerController : BaseEntity
 {
     protected override void OnStart() {
-        moveSpeedForwards = 10;
-        moveSpeedBackwards = 5;
-        jumpForce = 20;
-        health = 100;
+
     }
 
     protected override Vector2 GetDecision() {

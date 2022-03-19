@@ -20,7 +20,8 @@ public class BaseEntity : MonoBehaviour
     protected SpriteRenderer sprite;
 
     // Please override
-    public float health = 100;
+    public int maxHealth = 100;
+    private int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class BaseEntity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        currentHealth = maxHealth;
         OnStart();
     }
 
@@ -43,15 +46,15 @@ public class BaseEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 decsicion = GetDecision();
+        Vector2 decision = GetDecision();
 
-        if (decsicion.x > 0) {
-            rb.velocity = new Vector2 (decsicion.x * moveSpeedForwards, rb.velocity.y);
+        if (decision.x > 0) {
+            rb.velocity = new Vector2 (decision.x * moveSpeedForwards, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2 (decsicion.x * moveSpeedBackwards, rb.velocity.y);
+            rb.velocity = new Vector2 (decision.x * moveSpeedBackwards, rb.velocity.y);
         }
 
-        if(decsicion.y > 0.1f && IsGrounded())
+        if(decision.y > 0.1f && IsGrounded())
         {
             animator.SetTrigger("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -62,11 +65,11 @@ public class BaseEntity : MonoBehaviour
 
     protected virtual void OnUpdate() {}
 
-    public void TakeDamage(float damage) {
+    public void TakeDamage(int damage) {
         animator.SetTrigger("Take Damage");
-        health -= damage;
+        currentHealth -= damage;
 
-        if (health < 0) {
+        if (currentHealth < 0) {
             OnDeath();
         }
     }
@@ -116,6 +119,6 @@ public class BaseEntity : MonoBehaviour
     /// Where this entity wants to go
     /// </summary>
     protected virtual Vector2 GetDecision() {
-        return new Vector2(0f,-1f);
+        return new Vector2(0f,0f);
     }
 }
