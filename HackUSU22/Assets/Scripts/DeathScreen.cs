@@ -13,6 +13,6 @@ public class DeathScreen : MonoBehaviour
 
     public void QuitGame()
     {
-        QuitGame();
+        Application.Quit();
     }
 }

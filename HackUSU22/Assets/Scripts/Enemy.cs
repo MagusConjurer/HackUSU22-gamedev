@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 //using System.Numerics;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ public class Enemy : BaseEntity
     {
         base.OnDeath();
         StandardSpawning spawner = GameObject.FindGameObjectWithTag("StandardSpawner").GetComponent<StandardSpawning>();
-        spawner.DestroyEnemy(GetComponentInParent<GameObject>());
+        spawner.DestroyEnemy(gameObject);
     }
 
     /// <summary>

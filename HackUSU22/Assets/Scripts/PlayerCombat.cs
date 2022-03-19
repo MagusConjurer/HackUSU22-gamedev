@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerCombat : Combat
@@ -63,7 +62,7 @@ public class PlayerCombat : Combat
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
-        animator.SetTrigger("Attack Release");
+        //animator.SetTrigger("Attack Release");
     }
 
     //private void AttackPrepare()
