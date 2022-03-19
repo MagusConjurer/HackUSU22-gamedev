@@ -115,6 +115,7 @@ public class BaseEntity : MonoBehaviour
     public void TakeDamage(int damage) {
         animator.SetTrigger("TakeDamage");
         currentHealth -= damage;
+        rb.velocity += new Vector2(50f, 0);
         spawnedBlood = Instantiate(bloodSprite, transform);
         spawnedBlood.transform.position = transform.position;
 

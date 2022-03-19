@@ -32,6 +32,8 @@ public class Enemy : BaseEntity
         Debug.DrawRay(transform.position, direction, Color.red);
         if (direction.magnitude > accuracy && TargetInRange())
         {
+            if(direction.x > 0)
+                sprite.flipX = true;
             return new Vector2(direction.x, direction.y).normalized;
         }
         else
