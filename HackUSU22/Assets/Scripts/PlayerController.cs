@@ -16,7 +16,7 @@ public class PlayerController : BaseEntity
         var dirX = Input.GetAxisRaw("Horizontal");
         float dirY;
         if (Input.GetButtonDown("Jump")) {
-            dirY = 1f;
+            dirY = 10f;
         } else {
             dirY = 0f;
         }
