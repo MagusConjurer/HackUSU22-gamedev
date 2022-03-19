@@ -8529,12 +8529,12 @@ MonoBehaviour:
   - {fileID: 1690773167}
   - {fileID: 1887885696}
   - {fileID: 409555219}
-  spawnDelay: 10
+  spawnDelay: 5
   prefabs:
   - {fileID: 9137733671874034682, guid: c9d9f6d77b89ddb4d8968d4356b86b11, type: 3}
   - {fileID: 6508237034891565462, guid: fe42bb209ec7b8e46b700cbcecf80697, type: 3}
   - {fileID: 1627680813}
-  spawnCap: 10
+  spawnCap: 15
 --- !u!1 &2050091678
 GameObject:
   m_ObjectHideFlags: 0
