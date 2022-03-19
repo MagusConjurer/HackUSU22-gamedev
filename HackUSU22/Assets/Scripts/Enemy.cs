@@ -8,6 +8,7 @@ public class Enemy : BaseEntity
 {
     public Transform player;
     public float accuracy;
+    public float followRange = 10;
     protected override void OnStart() 
     {
         if(player == null)
@@ -27,7 +28,7 @@ public class Enemy : BaseEntity
     protected override Vector2 GetDecision() {
         Vector3 direction = player.position - transform.position;
         Debug.DrawRay(transform.position, direction, Color.red);
-        if (direction.magnitude > accuracy)
+        if (direction.magnitude > accuracy && TargetInRange())
         {
             return new Vector2(direction.x, direction.y).normalized;
         }
@@ -35,5 +36,15 @@ public class Enemy : BaseEntity
         {
             return new Vector2(0f, 0f);
         }
+    }
+
+    private bool TargetInRange()
+    {
+        if (Vector2.Distance(transform.position, player.position) < followRange)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
