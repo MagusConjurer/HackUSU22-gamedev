@@ -15,7 +15,7 @@ public class PlayerController : BaseEntity
         health = 100;
     }
 
-    private Vector2 GetDescision() {
+    protected override Vector2 GetDecision() {
         var dirX = Input.GetAxisRaw("Horizontal");
         float dirY;
         if (Input.GetButtonDown("Jump")) {
@@ -26,8 +26,7 @@ public class PlayerController : BaseEntity
         return new Vector2(dirX, dirY);
     }
 
-    public static float getDirection()
+    protected override void OnUpdate()
     {
-        return dirX * moveSpeed;
     }
 }
