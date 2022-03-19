@@ -6,11 +6,18 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
-    public void OnStart() {
-
+    public Transform player;
+    public float accuracy;
+    public float followRange = 10;
+    protected override void OnStart() 
+    {
+        if(player == null)
+        {
+            player = GameObject.Find("Player").transform;
+        }
     }
 
-    private void OnDeath()
+    protected override void OnDeath()
     {
         GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -18,7 +25,26 @@ public class Enemy : BaseEntity
     /// <summary>
     /// Where this entity wants to go
     /// </summary>
-    private Vector2 GetDecsicion() {
-        return new Vector2(0f,-1f);
+    protected override Vector2 GetDecision() {
+        Vector3 direction = player.position - transform.position;
+        Debug.DrawRay(transform.position, direction, Color.red);
+        if (direction.magnitude > accuracy && TargetInRange())
+        {
+            return new Vector2(direction.x, direction.y).normalized;
+        }
+        else
+        {
+            return new Vector2(0f, 0f);
+        }
+    }
+
+    private bool TargetInRange()
+    {
+        if (Vector2.Distance(transform.position, player.position) < followRange)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

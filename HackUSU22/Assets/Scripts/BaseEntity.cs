@@ -14,13 +14,16 @@ public class BaseEntity : MonoBehaviour
     public LayerMask ground;
     public Animator animator;
 
+    protected AudioSource sndSource;
+
     // This entity should have all of these
     protected Rigidbody2D rb;
     protected BoxCollider2D coll;
     protected SpriteRenderer sprite;
 
     // Please override
-    public float health = 100;
+    public int maxHealth = 100;
+    protected int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -28,55 +31,68 @@ public class BaseEntity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        currentHealth = maxHealth;
         OnStart();
     }
 
+    public Vector2 GetVelocity() {
+        return rb.velocity;
+    }
+
+    /// <summary>
+    /// Called on Start()
+    /// </summary>
     protected virtual void OnStart() {}
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 decsicion = GetDecsicion();
+        Vector2 decision = GetDecision();
 
-        if (decsicion.x > 0) {
-            rb.velocity = new Vector2 (decsicion.x * moveSpeedForwards, rb.velocity.y);
+        if (decision.x > 0) {
+            rb.velocity = new Vector2 (decision.x * moveSpeedForwards, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2 (decsicion.x * moveSpeedBackwards, rb.velocity.y);
+            rb.velocity = new Vector2 (decision.x * moveSpeedBackwards, rb.velocity.y);
         }
 
-        if(decsicion.y > 0.1f && IsGrounded())
+        if(decision.y > 0.1f && IsGrounded())
         {
             animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         UpdateAnimation(rb.velocity);
     }
 
-    public void TakeDamage(float damage) {
-        animator.SetTrigger("Take Damage");
-        health -= damage;
+    protected virtual void OnUpdate() {}
 
-        if (health < 0) {
+    public void TakeDamage(int damage) {
+        animator.SetTrigger("Take Damage");
+        currentHealth -= damage;
+
+        if (currentHealth < 0) {
             OnDeath();
         }
     }
 
-    protected void OnDeath() {
-        GetComponent<BoxCollider2D>().enabled = false;
+    protected virtual void OnDeath() {
+        coll.enabled = false;
     }
 
     private void UpdateAnimation(Vector2 velocity)
     {
-        if (velocity.x > 0f)
+        animator.SetBool("Forwards", false);
+        animator.SetBool("Backwards", false);
+        if (velocity.x > 0.1f)
         {
             // Set anim state for walk animation
-            animator.SetTrigger("Forwards");
+            animator.SetBool("Forwards", true);
         }
-        else if (velocity.x < 0f)
+        else if (velocity.x < -0.1f)
         {
             // Slower back step?
-            animator.SetTrigger("Backwards");
+            animator.SetBool("Backwards", true);
         }
         else
         {
@@ -98,13 +114,13 @@ public class BaseEntity : MonoBehaviour
 
     private bool IsFalling()
     {
-        return rb.velocity.y < 0;
+        return rb.velocity.y < -0.3;
     }
 
     /// <summary>
     /// Where this entity wants to go
     /// </summary>
-    public virtual Vector2 GetDecsicion() {
-        return new Vector2(0f,-1f);
+    protected virtual Vector2 GetDecision() {
+        return new Vector2(0f,0f);
     }
 }
