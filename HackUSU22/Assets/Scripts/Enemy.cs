@@ -8,7 +8,12 @@ public class Enemy : BaseEntity
 {
     public Transform player;
     public float accuracy;
-    protected override void OnStart() {
+    protected override void OnStart() 
+    {
+        if(player == null)
+        {
+            player = GameObject.Find("Player").transform;
+        }
     }
 
     protected override void OnDeath()
@@ -24,7 +29,7 @@ public class Enemy : BaseEntity
         Debug.DrawRay(transform.position, direction, Color.red);
         if (direction.magnitude > accuracy)
         {
-            return new Vector2(direction.x, direction.y);
+            return new Vector2(direction.x, direction.y).normalized;
         }
         else
         {
