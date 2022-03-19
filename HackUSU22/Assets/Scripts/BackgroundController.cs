@@ -22,6 +22,12 @@ public class BackgroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2()
+        rb.velocity = new Vector2(PlayerController.getDirection(), 0);
+        // if below/above outer threshold tp image to reset position
+        if(transform.position.x < -width)
+        {
+            Vector2 resetPos = new Vector2(2f * width, 0);
+            transform.position = (Vector2)transform.position + resetPos;
+        }
     }
 }
