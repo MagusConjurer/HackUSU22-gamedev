@@ -23,9 +23,13 @@ public class PlayerController : BaseEntity
          Resources.Load<AudioClip>("Audio/clash4"),
          Resources.Load<AudioClip>("Audio/clash5"),
         };
+
+        sndSource.clip = Resources.Load<AudioClip>("Audio/robin");
+        sndSource.loop = true;
+        sndSource.Play();
     }
 
-    private void PlayRandomClash() {
+    public void PlayRandomClash() {
         var r = new System.Random();
         AudioClip c = clashes[r.Next(1,5)];
         sndSource.PlayOneShot(c);
