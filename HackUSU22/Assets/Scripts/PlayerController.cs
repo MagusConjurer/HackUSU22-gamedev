@@ -1,66 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : BaseEntity
 {
-    public static float moveSpeed = 10f;
-    public float jumpForce;
-    public LayerMask ground;
-
-    private Rigidbody2D rb;
-    private BoxCollider2D coll;
-    private SpriteRenderer sprite;
-    private Animator anim;
-
-    private static float dirX;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
-        sprite = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+    protected override void OnStart() {
+        moveSpeedForwards = 10;
+        moveSpeedBackwards = 5;
+        jumpForce = 20;
+        health = 100;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
-        if(Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    private Vector2 GetDescision() {
+        var dirX = Input.GetAxisRaw("Horizontal");
+        float dirY;
+        if (Input.GetButtonDown("Jump")) {
+            dirY = 1f;
+        } else {
+            dirY = 0f;
         }
-
-        UpdateAnimation();
-    }
-
-    private void UpdateAnimation()
-    {
-        if (dirX > 0.1f)
-        {
-            // Set anim state for walk animation
-            sprite.flipX = false;
-        }
-        else if (dirX < 0.1f)
-        {
-            // Slower back step?
-        }
-        else
-        {
-            // Set anim idle
-        }
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, ground);
+        return new Vector2(dirX, dirY);
     }
 
     public static float getDirection()

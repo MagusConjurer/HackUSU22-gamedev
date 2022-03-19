@@ -1,35 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
+//using System.Numerics;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : BaseEntity
 {
-    public int maxHealth = 150;
+    public void OnStart() {
 
-    private int currentHealth;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    private void OnDeath()
     {
-        currentHealth -= damageAmount;
-
-        // TODO: Play damage anim
-
-        if (currentHealth <= 0)
-        {
-            Death();
-        }
-    }
-
-    private void Death()
-    {
-        // TODO: Play death anim
-        // TODO: Disable any enemy logic
         GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    /// <summary>
+    /// Where this entity wants to go
+    /// </summary>
+    private Vector2 GetDecsicion() {
+        return new Vector2(0f,-1f);
     }
 }
