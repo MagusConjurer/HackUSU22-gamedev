@@ -4,16 +4,8 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : Combat
 {
-    public Transform attackPoint;
-    public LayerMask enemyLayers;
-    public float attackRange = 0.5f;
-    public int attackDamage = 25;
-    public float attackRate = 0.5f;
-    public Animator animator;
-    public PlayerController playerController;
-
     private float nextAttackTime = 0f;
     private bool chargingAttack = false;
 
@@ -67,19 +59,11 @@ public class PlayerCombat : MonoBehaviour
     public void AttackSwing() {
         Debug.Log("Attack Swing()");
         // Detect in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, targetLayers);
         // Apply damage
         foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
-    }
-
-    // Debug method to visualize the range of the attack
-    private void OnDrawGizmos()
-    {
-        if (attackPoint == null) return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
