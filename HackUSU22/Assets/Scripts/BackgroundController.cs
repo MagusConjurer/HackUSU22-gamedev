@@ -33,7 +33,7 @@ public class BackgroundController : MonoBehaviour
         }
         foreach(GameObject o in TileGeneration.tiles)
         {
-            o.transform.position = new Vector3(transform.position.x, -2);
+            o.transform.position = new Vector3(transform.position.x+38, -2);
         }
     }
 }

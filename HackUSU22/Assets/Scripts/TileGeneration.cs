@@ -27,7 +27,7 @@ public class TileGeneration : MonoBehaviour
         GameObject wall = new GameObject("ground_1");
         wall.tag = "ground";
         wall.transform.parent = curr.transform;
-        wall.transform.position = new Vector2(parent.x + 38, -2);
+        wall.transform.position = new Vector2(parent.x + 39, -2);
         wall.transform.localScale = new Vector3(width / 1.3f, 1);
 
         SpriteRenderer wallSp = wall.AddComponent<SpriteRenderer>();
@@ -44,7 +44,7 @@ public class TileGeneration : MonoBehaviour
         Rigidbody2D wrb = wall.AddComponent<Rigidbody2D>();
         wrb.gravityScale = 0f;
         wrb.simulated = true;
-        wrb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        wrb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
 
         tiles.Add(wall);
 
