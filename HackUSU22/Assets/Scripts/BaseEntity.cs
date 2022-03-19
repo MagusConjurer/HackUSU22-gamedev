@@ -134,7 +134,7 @@ public class BaseEntity : MonoBehaviour
     protected virtual void OnDeath() {
         coll.enabled = false;
         //Invoke("setTBDeleted", 2);
-        Destroy(this, 5);
+        Destroy(this, 2);
         Debug.Log("death called from " + rb.gameObject.name);
     }
 

@@ -71,12 +71,10 @@ public class PlayerController : BaseEntity
         OffTheMap();
         if (transform.position.x > 250)
         {
-            rb.gravityScale = 0.8f;
             jumpForce = 20;
         }
         else
         {
-            rb.gravityScale = 1f;
             jumpForce = 10;
         }
 
@@ -87,6 +85,7 @@ public class PlayerController : BaseEntity
         base.OnDeath();
         Debug.Log("Died");
         sndSource.PlayOneShot(scream);
+        Destroy(this, 4);
     }
 
     private void OffTheMap()
