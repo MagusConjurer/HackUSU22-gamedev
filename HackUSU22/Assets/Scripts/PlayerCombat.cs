@@ -26,7 +26,7 @@ public class PlayerCombat : Combat
                 Attack();
                 nextAttackTime = Time.time + attackRate;
             }
-        }
+       }
         //if (Input.GetButtonDown("Fire1"))
         //{ 
         //    // if this attack is newly called
