@@ -6,13 +6,16 @@ using UnityEngine;
 
 public class PlayerCombat : Combat
 {
-    public Transform attackPoint;
-    public LayerMask enemyLayers;
-    public float attackRange = 0.3f;
-    public int attackDamage = 25;
-    public float attackRate = 0.3f;
-    public Animator animator;
     public PlayerController playerController;
+
+    private bool chargingAttack = false;
+    private float nextAttackTime = 0f;
+
+    protected override void OnStart() {
+        attackRange = 0.3f;
+        attackDamage = 25;
+        attackRate = 0.3f;
+    }
 
     // Update is called once per frame
     void Update()
