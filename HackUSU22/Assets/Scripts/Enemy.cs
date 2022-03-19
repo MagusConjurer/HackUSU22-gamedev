@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
-    public void OnStart() {
-
+    protected override void OnStart() {
     }
 
-    private void OnDeath()
+    protected override void OnDeath()
     {
         GetComponent<BoxCollider2D>().enabled = false;
     }
@@ -18,7 +17,7 @@ public class Enemy : BaseEntity
     /// <summary>
     /// Where this entity wants to go
     /// </summary>
-    private Vector2 GetDecsicion() {
+    protected override Vector2 GetDecision() {
         return new Vector2(0f,-1f);
     }
 }
