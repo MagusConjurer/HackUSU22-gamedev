@@ -9,7 +9,7 @@ using UnityEngine;
 public class PlayerController : BaseEntity
 {
     protected override void OnStart() {
-
+        jumpForce = 10;
     }
 
     protected override Vector2 GetDecision() {
@@ -25,5 +25,12 @@ public class PlayerController : BaseEntity
 
     protected override void OnUpdate()
     {
+    }
+
+    protected override void OnDeath()
+    {
+        Debug.Log("Died");
+        GetComponent<AudioSource>().Play();
+        base.OnDeath();
     }
 }

@@ -21,7 +21,7 @@ public class BaseEntity : MonoBehaviour
 
     // Please override
     public int maxHealth = 100;
-    private int currentHealth;
+    protected int currentHealth;
 
     // Start is called before the first frame update
     void Start()
