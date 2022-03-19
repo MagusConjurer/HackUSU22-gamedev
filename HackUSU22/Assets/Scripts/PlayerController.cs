@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 10;
+    public static float moveSpeed = 10f;
     public float jumpForce;
     public LayerMask ground;
 
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
 
-    private float dirX;
+    private static float dirX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2 (dirX * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -61,5 +61,10 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, ground);
+    }
+
+    public static float getDirection()
+    {
+        return dirX * moveSpeed;
     }
 }
